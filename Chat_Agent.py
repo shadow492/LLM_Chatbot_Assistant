@@ -17,7 +17,6 @@ from langchain.vectorstores import FAISS
 from langchain.document_loaders import PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
-import pickle
 
 
 
@@ -69,8 +68,6 @@ class StreamHandler(BaseCallbackHandler):
         self.text +=token
         self.container.markdown(self.text)
 
-
-from dotenv import load_dotenv
 
 search = SerpAPIWrapper(serpapi_api_key=Search_api)
 tools = [
