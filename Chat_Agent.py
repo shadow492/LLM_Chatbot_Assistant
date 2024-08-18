@@ -77,7 +77,7 @@ else:
 
 
     from langchain.agents.agent_toolkits import create_conversational_retrieval_agent
-    agent_executor = create_conversational_retrieval_agent(llm,tools,memory_key="chat_history",verbose = True)
+    agent_executor = create_conversational_retrieval_agent(llm,tools,memory_key="chat_history",verbose = False)
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [ChatMessage(role= "assistant", content= "How can I help you?")]
