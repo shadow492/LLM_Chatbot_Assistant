@@ -16,8 +16,6 @@ from langchain.vectorstores import FAISS
 from langchain.document_loaders import PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
-import pickle
-!pip install pickle
 
 
 import getpass
@@ -41,9 +39,6 @@ llm = HuggingFaceEndpoint(
             huggingfacehub_api_token=HugginngFaceAPI
 
 )
-
-with open("https://github.com/shadow492/LLM_Chatbot_Assistant/blob/main/Book_data.pickle", "rb") as f:
-    db = pickle.load(f)
 
 memory = ConversationBufferMemory(memory_key='chat_history',
                                   return_messages=True,
@@ -74,11 +69,7 @@ tools = [
         func = search.run,
         name = "Search",
         description = "Useful for when you need to answer questions about current events"),
-        create_retriever_tool(
-            db.as_retriever(),
-            "Philosopher",
-            "searches and returns the most authentic answers from the database"
-        )    
+       
 ]
 
 
