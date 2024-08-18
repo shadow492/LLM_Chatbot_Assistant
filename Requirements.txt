@@ -1,0 +1,3 @@
+Streamlit==1.37.1
+langchain
+langchain_huggingface
