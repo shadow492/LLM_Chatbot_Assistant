@@ -60,18 +60,12 @@ class StreamHandler(BaseCallbackHandler):
         self.text +=token
         self.container.markdown(self.text)
 
-if Search_api:
-    search = SerpAPIWrapper(serpapi_api_key=Search_api)
-    tools = [
+search = SerpAPIWrapper(serpapi_api_key=Search_api)
+tools = [
     Tool.from_function(
         func = search.run,
         name = "Search",
-        description = "Useful for when you need to answer questions about current events"),
-        create_retriever_tool(
-            db.as_retriever(),
-            "Philosopher",
-            "searches and returns the most authentic answers from the database"
-        )    
+        description = "Useful for when you need to answer questions about current events")   
 ]
 
 
