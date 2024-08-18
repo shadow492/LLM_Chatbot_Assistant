@@ -3,3 +3,4 @@ langchain
 langchain_huggingface
 langchain_community
 langchain_core
+google-search-results
