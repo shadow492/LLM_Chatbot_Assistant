@@ -5,7 +5,6 @@ from langchain.callbacks.base import BaseCallbackHandler
 from langchain.schema import ChatMessage
 from langchain.memory.chat_message_histories import StreamlitChatMessageHistory
 import os
-from dotenv import load_dotenv
 from langchain import PromptTemplate,LLMChain
 from langchain.chains import ConversationChain
 import requests
