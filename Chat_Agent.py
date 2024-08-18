@@ -23,10 +23,8 @@ import os
 
 
 st.set_page_config(page_title="Travel Guru")
-
-with st.sidebar:
-    HugginngFaceAPI = st.text_input("HuggingFaceHub Key", type="password")
-    Search_api= st.text_input("SerpAPI key(Required for web search)",type="password")
+HugginngFaceAPI = st.text_input("HuggingFaceHub Key", type="password")
+Search_api= st.text_input("SerpAPI key(Required for web search)",type="password")
     
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 
