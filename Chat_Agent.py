@@ -16,7 +16,7 @@ from langchain.vectorstores import FAISS
 from langchain.document_loaders import PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
-
+import pickle
 
 
 
@@ -42,7 +42,7 @@ llm = HuggingFaceEndpoint(
 
 )
 
-with open("Book_data.pkl", "rb") as f:
+with open("https://github.com/shadow492/LLM_Chatbot_Assistant/blob/main/Book_data.pickle", "rb") as f:
     db = pickle.load(f)
 
 memory = ConversationBufferMemory(memory_key='chat_history',
