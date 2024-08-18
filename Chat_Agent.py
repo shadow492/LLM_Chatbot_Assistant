@@ -17,7 +17,7 @@ from langchain.document_loaders import PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
 import pickle
-
+!pip install pickle
 
 
 import getpass
