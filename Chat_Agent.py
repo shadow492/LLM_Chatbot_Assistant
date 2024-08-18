@@ -28,7 +28,7 @@ st.header("Hello there, welcome to Book Guru, your personal book guide")
 HugginngFaceAPI = st.text_input("HuggingFaceHub Key", type="password")
 Search_api= st.text_input("SerpAPI key(Required for web search)",type="password")
 
-if not HugginngFaceAPI and Search_api:
+if not HugginngFaceAPI and not Search_api:
     st.info("Please add your API keys to continue.", icon="🗝️")
 
 else: 
