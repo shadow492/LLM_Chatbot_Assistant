@@ -47,7 +47,7 @@ else:
     )
 
     memory = ConversationBufferMemory(memory_key='chat_history',
-                                  return_messages=True,
+                                  return_messages=False,
                                   output_key="output")
 
 
@@ -73,10 +73,10 @@ else:
         Tool.from_function(
             func = search.run,
             name = "Search",
-            description = "Useful for when you need to answer questions about current events")   
+            description = "Useful for when you need to answer questions about current events and unknown information")   
     ]
 
-    agent_executor = create_conversational_retrieval_agent(llm,tools,memory_key="chat_history",verbose = False)
+    agent_executor = create_conversational_retrieval_agent(llm,tools,memory_key="chat_history",verbose = True)
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [ChatMessage(role= "assistant", content= "How can I help you?")]
