@@ -16,6 +16,7 @@ from langchain.vectorstores import FAISS
 from langchain.document_loaders import PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
+from langchain.agents.agent_toolkits import create_conversational_retrieval_agent
 
 
 import getpass
@@ -75,8 +76,6 @@ else:
             description = "Useful for when you need to answer questions about current events")   
     ]
 
-
-    from langchain.agents.agent_toolkits import create_conversational_retrieval_agent
     agent_executor = create_conversational_retrieval_agent(llm,tools,memory_key="chat_history",verbose = False)
 
     if "messages" not in st.session_state:
