@@ -24,7 +24,7 @@ import getpass
 import os
 
 
-st.set_page_config(page_title="Book Guru")
+st.set_page_config(page_title="Travel Guru")
 
 with st.sidebar:
     HugginngFaceAPI = st.text_input("HuggingFaceHub Key", type="password")
