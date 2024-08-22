@@ -17,7 +17,9 @@ from langchain.document_loaders import PyPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
 from langchain.agents.agent_toolkits import create_conversational_retrieval_agent
+from langchain.agents import AgentExecutor, create_structured_chat_agent
 
+from langchain import hub
 
 import getpass
 import os
@@ -25,10 +27,18 @@ import os
 
 st.set_page_config(page_title="Travel Guru")
 st.header("Hello there, welcome to Book Guru, your personal book guide")
-HugginngFaceAPI = st.text_input("HuggingFaceHub Key", type="password")
-Search_api= st.text_input("SerpAPI key(Required for web search)",type="password")
 
-if not HugginngFaceAPI and not Search_api:
+
+import streamlit as st
+
+left, middle = st.columns(2, vertical_alignment="center")
+with left.popover("HuggingFace",use_container_width=True):
+    HugginngFaceAPI = st.text_input("HuggingFaceHub Key", type="password",)
+    
+with middle.popover("SerpAPI",use_container_width=True):
+    Search_api= st.text_input("SerpAPI key(Required for web search)",type="password")
+
+if not HugginngFaceAPI :
     st.info("Please add your API keys to continue.", icon="🗝️")
 
 else: 
@@ -75,12 +85,13 @@ else:
             name = "Search",
             description = "Useful for when you need to answer questions about current events and unknown information")   
     ]
+    prompt = hub.pull("hwchase17/structured-chat-agent")
 
-    agent_executor = create_conversational_retrieval_agent(llm,tools,memory_key="chat_history",verbose = True)
+    agent = create_structured_chat_agent(llm, tools,prompt=prompt)
+    agent_executor = AgentExecutor(agent=agent,tools=tools,memory_key="chat_history",verbose=True,return_only_output=True,handle_parsing_errors=True)
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [ChatMessage(role= "assistant", content= "How can I help you?")]
-
 
     if "memory" not in st.session_state:
         st.session_state['memory'] = memory
@@ -96,7 +107,7 @@ else:
         with st.chat_message("assistant"):
             st_cb = StreamlitCallbackHandler(st.container())
             Stream_handler = StreamHandler(st.empty())
-            response = agent_executor.invoke({"input":st.session_state.messages})
+            response = agent_executor.invoke({"input":st.session_state.messages},return_only_outputs=True,)
             if isinstance(response, dict):
                 content = response.get('output', str(response))
             else:
@@ -104,6 +115,3 @@ else:
 
             st.session_state.messages.append(ChatMessage(role="assistant", content= response.get("output")))
             st.write(response.get("output"))
-
-
-
