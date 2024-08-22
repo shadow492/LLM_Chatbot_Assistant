@@ -103,25 +103,25 @@ else:
     }}
     ```
 
-Follow this format:
+    Follow this format:
 
-Question: input question to answer
-Thought: consider previous and subsequent steps
-Action:
-```
-$JSON_BLOB
-```
-Observation: action result
-... (repeat Thought/Action/Observation N times)
-Thought: I know what to respond
-Action:
-```
+    Question: input question to answer
+    Thought: consider previous and subsequent steps
+    Action:
+    ```
+    $JSON_BLOB
+    ```
+    Observation: action result
+    ... (repeat Thought/Action/Observation N times)
+    Thought: I know what to respond
+    Action:
+    ```
     {{
-  "action": "Final Answer",
-  "action_input": "Final response to human"
+    "action": "Final Answer",
+    "action_input": "Final response to human"
     }}
 
-Begin! Reminder to ALWAYS respond with a valid json blob of a single action. Use tools if necessary. Respond directly if appropriate. Format is Action:```$JSON_BLOB```then Observation'''
+    Begin! Reminder to ALWAYS respond with a valid json blob of a single action. Use tools if necessary. Respond directly if appropriate. Format is Action:```$JSON_BLOB```then Observation'''
 
     human = '''{input}
 
