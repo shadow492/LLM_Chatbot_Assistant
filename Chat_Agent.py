@@ -78,7 +78,6 @@ if not Search_api :
             self.text +=token
             self.container.markdown(self.text)
 
-    search = SerpAPIWrapper(serpapi_api_key=Search_api)
     tools = []
 
     prompt = hub.pull("hwchase17/structured-chat-agent")
