@@ -59,7 +59,7 @@ Action:
 $JSON_BLOB
 ```
 Observation: action result
-... (repeat Thought/Action/Observation till you don't find a valid response)
+... (repeat Thought/Action/Observation for N times)
 Thought: I know what to respond and how to respond
 Action:
 ```
