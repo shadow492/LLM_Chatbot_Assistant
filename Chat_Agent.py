@@ -99,7 +99,7 @@ if not Search_api :
     llm = HuggingFaceEndpoint(
             repo_id="microsoft/Phi-3.5-mini-instruct",
             task="text-generation",
-            max_new_tokens=5120,
+            max_new_tokens=4000,
             do_sample=False,
             repetition_penalty=1.03,
             huggingfacehub_api_token=HugginngFaceAPI
