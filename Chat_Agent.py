@@ -212,7 +212,7 @@ else:
             description = "Useful for when you need to answer questions about current events and unknown information",
         name="python_repl",
             description="A Python shell. Use this to execute python commands. Input should be a valid python command. If you want to see the output of a value, you should print it out with `print(...)`.",
-            func=python_repl.run,)
+            func = python_repl.run)
     ]
 
     agent = create_structured_chat_agent(llm, tools,prompt=prompt)
