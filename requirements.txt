@@ -5,4 +5,4 @@ langchain_community
 langchain_core
 google-search-results
 langchainhub
-langchain_experimental.utilities.python.PythonREPL
+langchain-experimental.utilities.python.PythonREPL
