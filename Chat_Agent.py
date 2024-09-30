@@ -8,6 +8,8 @@ import os
 from langchain import PromptTemplate,LLMChain
 from langchain.chains import ConversationChain
 import requests
+from langchain_core.tools import Tool
+from langchain_experimental.utilities import PythonREPL
 from langchain_community.utilities import SerpAPIWrapper
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from langchain.memory import ConversationBufferMemory
@@ -127,7 +129,11 @@ if not Search_api :
             self.text +=token
             self.container.markdown(self.text)
 
-    tools = []
+    tools = [
+        name="python_repl",
+            description="A Python shell. Use this to execute python commands. Input should be a valid python command. If you want to see the output of a value, you should print it out with `print(...)`.",
+            func=python_repl.run
+      ]
 
     
 
@@ -203,7 +209,10 @@ else:
         Tool.from_function(
             func = search.run,
             name = "Search",
-            description = "Useful for when you need to answer questions about current events and unknown information")   
+            description = "Useful for when you need to answer questions about current events and unknown information"),
+        name="python_repl",
+            description="A Python shell. Use this to execute python commands. Input should be a valid python command. If you want to see the output of a value, you should print it out with `print(...)`.",
+            func=python_repl.run,
     ]
 
     agent = create_structured_chat_agent(llm, tools,prompt=prompt)
