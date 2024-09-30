@@ -6,3 +6,4 @@ langchain_core
 google-search-results
 langchainhub
 langchain-experimental
+PythonREPL
