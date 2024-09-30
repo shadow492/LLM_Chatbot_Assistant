@@ -105,10 +105,10 @@ if not HugginngFaceAPI :
 if not Search_api :
     from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 
-from transformers import AutoModelForCausalLM, AutoTokenizer
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 
-llm = AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
-tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
+    llm = AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
+    tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
 
     memory = ConversationBufferMemory(memory_key='chat_history',
                                   return_messages=False,
