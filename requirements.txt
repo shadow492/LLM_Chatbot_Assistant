@@ -7,3 +7,4 @@ google-search-results
 langchainhub
 PythonREPL
 langchain_experimental.utilities
+langchain_experimental
