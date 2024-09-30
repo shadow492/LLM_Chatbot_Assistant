@@ -107,8 +107,15 @@ if not Search_api :
 
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
-    llm = AutoModelForCausalLM.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
-    tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3-mini-4k-instruct")
+    llm = HuggingFaceEndpoint(
+            repo_id="HuggingFaceH4/zephyr-7b-beta",
+            task="text-generation",
+            max_new_tokens=512,
+            do_sample=False,
+            repetition_penalty=1.03,
+            huggingfacehub_api_token=HugginngFaceAPI
+
+    )
 
     memory = ConversationBufferMemory(memory_key='chat_history',
                                   return_messages=False,
