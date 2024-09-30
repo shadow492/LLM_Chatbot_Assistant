@@ -50,7 +50,7 @@ Provide only ONE action per $JSON_BLOB, as shown:
 }}
 ```
 
-Follow this format:
+Follow this format and donot iterate too much for a query:
 
 Question: input question to answer
 Thought: consider previous and subsequent steps
@@ -59,8 +59,8 @@ Action:
 $JSON_BLOB
 ```
 Observation: action result
-... (repeat Thought/Action/Observation for N times)
-Thought: I know what to respond and how to respond
+... (repeat Thought/Action/Observation N times)
+Thought: I know what to respond
 Action:
 ```
 {{
@@ -69,6 +69,13 @@ Action:
 }}
 
 Begin! Reminder to ALWAYS respond with a valid json blob of a single action. Use tools if necessary. Respond directly if appropriate. Format is Action:```$JSON_BLOB```then Observation'''
+
+human = '''{input}
+
+{agent_scratchpad}
+
+(reminder to respond in a JSON blob no matter what)
+'''
 
 human = '''{input}
 
@@ -129,16 +136,13 @@ if not Search_api :
             self.text +=token
             self.container.markdown(self.text)
     python_repl = PythonREPL()
-    tools = [Tool.from_function(
-        name="python_repl",
-            description="A Python shell. Use this to execute python commands. Input should be a valid python command. If you want to see the output of a value, you should print it out with `print(...)`.",
-            func=python_repl.run)
+    tools = [
       ]
 
     
 
     agent = create_structured_chat_agent(llm, tools,prompt=prompt)
-    agent_executor = AgentExecutor(agent=agent,tools=tools,memory_key="chat_history",verbose=True,return_only_output=True,handle_parsing_errors=True)
+    agent_executor = AgentExecutor(agent=agent,tools=tools,memory_key="chat_history",verbose=True,return_only_output=True,handle_parsing_errors=True,early_stopping_method='generate')
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [ChatMessage(role= "assistant", content= "How can I help you?")]
@@ -211,14 +215,11 @@ else:
             func = search.run,
             name = "Search",
             description = "Useful for when you need to answer questions about current events and unknown information"),
-        Tool.from_function(
-            name="python_repl",
-            description="A Python shell. Use this to execute python commands. Input should be a valid python command. If you want to see the output of a value, you should print it out with `print(...)`.",
-            func = python_repl.run)
+        
     ]
 
     agent = create_structured_chat_agent(llm, tools,prompt=prompt)
-    agent_executor = AgentExecutor(agent=agent,tools=tools,memory_key="chat_history",verbose=True,return_only_output=True,handle_parsing_errors=True)
+    agent_executor = AgentExecutor(agent=agent,tools=tools,memory_key="chat_history",verbose=True,return_only_output=True,handle_parsing_errors=True,early_stopping_method='generate')
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [ChatMessage(role= "assistant", content= "How can I help you?")]
@@ -244,4 +245,4 @@ else:
                 content = str(response)
 
             st.session_state.messages.append(ChatMessage(role="assistant", content= response.get("output")))
-            st.write(response.get("output"))
+            st.write(response)
