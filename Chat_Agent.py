@@ -31,7 +31,7 @@ st.header("Hello there, welcome to Book Guru, your personal book guide")
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-system = '''Respond to the human as helpfully and accurately as possible. You have access to the following tools:
+system = '''Respond to the human as helpfully,accurately and efficiently as possible. You have access to the following tools:
 
 {tools}
 
@@ -57,8 +57,8 @@ Action:
 $JSON_BLOB
 ```
 Observation: action result
-... (repeat Thought/Action/Observation N times)
-Thought: I know what to respond
+... (repeat Thought/Action/Observation till you don't find a valid response)
+Thought: I know what to respond and how to respond
 Action:
 ```
 {{
