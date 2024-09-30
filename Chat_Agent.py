@@ -128,7 +128,7 @@ if not Search_api :
         def on_llm_new_token(self, token: str,**kwargs) -> None:
             self.text +=token
             self.container.markdown(self.text)
-
+    python_repl = PythonREPL()
     tools = [Tool.from_function(
         name="python_repl",
             description="A Python shell. Use this to execute python commands. Input should be a valid python command. If you want to see the output of a value, you should print it out with `print(...)`.",
@@ -205,6 +205,7 @@ else:
             self.container.markdown(self.text)
 
     search = SerpAPIWrapper(serpapi_api_key=Search_api)
+    python_repl = PythonREPL()
     tools = [
         Tool.from_function(
             func = search.run,
