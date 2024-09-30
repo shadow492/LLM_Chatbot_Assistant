@@ -209,8 +209,9 @@ else:
         Tool.from_function(
             func = search.run,
             name = "Search",
-            description = "Useful for when you need to answer questions about current events and unknown information",
-        name="python_repl",
+            description = "Useful for when you need to answer questions about current events and unknown information"),
+        Tool.from_function(
+            name="python_repl",
             description="A Python shell. Use this to execute python commands. Input should be a valid python command. If you want to see the output of a value, you should print it out with `print(...)`.",
             func = python_repl.run)
     ]
