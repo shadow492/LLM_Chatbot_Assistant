@@ -108,7 +108,7 @@ if not Search_api :
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
     llm = HuggingFaceEndpoint(
-            repo_id="HuggingFaceH4/zephyr-7b-beta",
+            repo_id="nvidia/Llama-3.1-Nemotron-70B-Instruct-HF",
             task="text-generation",
             max_new_tokens=512,
             do_sample=False,
