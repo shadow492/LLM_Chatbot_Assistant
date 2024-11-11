@@ -105,8 +105,6 @@ if not HugginngFaceAPI :
 if not Search_api :
     from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 
-    from transformers import AutoModelForCausalLM, AutoTokenizer
-
     llm = HuggingFaceEndpoint(
             repo_id="nvidia/Llama-3.1-Nemotron-70B-Instruct-HF",
             task="text-generation",
