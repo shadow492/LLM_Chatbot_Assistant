@@ -106,7 +106,7 @@ if not Search_api :
     from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 
     llm = HuggingFaceEndpoint(
-            repo_id="nvidia/Llama-3.1-Nemotron-70B-Instruct-HF",
+            repo_id="TriadParty/deepmoney-34b-200k-base",
             task="text-generation",
             max_new_tokens=512,
             do_sample=False,
